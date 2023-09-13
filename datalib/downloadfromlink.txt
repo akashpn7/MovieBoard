@@ -1,0 +1,4 @@
+Download the IMDb dataset from https://datasets.imdbws.com/.
+The files name.basics.tsv.gz for the actor data, 
+title.basics.tsv.gz for the movie data, and 
+title.principles.tsv.gz for the mapping between actors and movies. 
