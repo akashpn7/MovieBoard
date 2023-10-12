@@ -2,6 +2,8 @@ package com.deep.mb.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,10 +23,13 @@ public class ActorServiceImpl implements ActorService {
 	@Autowired
 	ActorDAO actorDAO;
 
-	public String getActorTSVData() {
+	public String saveActorTSVData(String request) {
 
 		try {
-			String actorDataFile = ".\\datalib\\name.basics.tsv.gz";
+			//String actorDataFile="/Users/a21093/akash_n7/Spring boot/MovieBoard/datalib/name.basics.tsv.gz";
+			//String actorDataFile = ".\\datalib\\name.basics.tsv.gz";
+			JSONObject obj = new JSONObject(request);
+			String actorDataFile=obj.getString("actorDataFile");
 			List<String[]> arr = new ArrayList<String[]>();
 			arr = new ParseTSVFileImpl().readLinesFromGZ(actorDataFile);
 			List<Actor> actorList = new ArrayList<Actor>();
@@ -50,11 +55,6 @@ public class ActorServiceImpl implements ActorService {
 	public List<Actor> getActorByName(String searchVal) {
 		List<Actor> actorList = actorDAO.getActorByName(searchVal);
 		return actorList;
-	}
-
-	public static void main(String args[]) {
-		new ActorServiceImpl().getActorTSVData();
-		System.out.println("Completed");
 	}
 
 }

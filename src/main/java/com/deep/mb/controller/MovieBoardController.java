@@ -2,6 +2,8 @@ package com.deep.mb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,21 +27,21 @@ public class MovieBoardController {
 	@Autowired
 	ActorMovieMappingService actorMovieMappingService;
 
-	@GetMapping("/saveActors")
-	public String getActors() {
-		String response = actorService.getActorTSVData();
+	@PostMapping("/saveActors")
+	public String getActors(@RequestBody String request) {
+		String response = actorService.saveActorTSVData(request);
 		return response;
 	}
 
-	@GetMapping("/saveMovies")
-	public String getMovies() {
-		String response = movieService.getMovieTSVData();
+	@PostMapping("/saveMovies")
+	public String getMovies(@RequestBody String request) {
+		String response = movieService.saveMovieTSVData(request);
 		return response;
 	}
 
-	@GetMapping("/saveActorMovieMapping")
-	public String getActorMovieMapping() {
-		String response = actorMovieMappingService.getActorMovieMappingTSVData();
+	@PostMapping("/saveActorMovieMapping")
+	public String getActorMovieMapping(@RequestBody String request) {
+		String response = actorMovieMappingService.saveActorMovieMappingTSVData(request);
 		return response;
 	}
 

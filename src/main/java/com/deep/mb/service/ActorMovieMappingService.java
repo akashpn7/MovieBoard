@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ActorMovieMappingService {
-	public String getActorMovieMappingTSVData();
+	public String saveActorMovieMappingTSVData(String request);
 	
 	public Map<String,Object> getActorMovieData(String searchVal);
 }

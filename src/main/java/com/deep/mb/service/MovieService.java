@@ -4,5 +4,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MovieService {
-	public String getMovieTSVData();
+	public String saveMovieTSVData(String request);
 }

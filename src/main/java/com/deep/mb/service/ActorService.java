@@ -8,7 +8,7 @@ import com.deep.mb.entity.Actor;
 
 @Repository
 public interface ActorService {
-	public String getActorTSVData();
+	public String saveActorTSVData(String request);
 	
 	public List<Actor> getActorByName(String searchVal);
 }

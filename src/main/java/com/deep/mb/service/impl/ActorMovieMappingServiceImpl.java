@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.deep.mb.dao.ActorDAO;
@@ -30,9 +32,12 @@ public class ActorMovieMappingServiceImpl implements ActorMovieMappingService {
 	@Autowired
 	MovieDAO movieDAO;
 
-	public String getActorMovieMappingTSVData() {
+	public String saveActorMovieMappingTSVData(String request) {
 		try {
-			String relationDataFile = ".\\datalib\\title.principals.tsv.gz";
+			//String relationDataFile = ".\\datalib\\title.principals.tsv.gz";
+			//String relationDataFile="/Users/a21093/akash_n7/Spring boot/MovieBoard/datalib/title.principals.tsv.gz";
+			JSONObject obj = new JSONObject(request);
+			String relationDataFile=obj.getString("relationDataFile");
 			List<String[]> arr = new ArrayList<String[]>();
 			arr = parseTSV.readLinesFromGZ(relationDataFile);
 			List<ActorMovieMapping> actorMovieList = new ArrayList<ActorMovieMapping>();

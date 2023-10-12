@@ -2,6 +2,8 @@ package com.deep.mb.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.deep.mb.dao.MovieDAO;
@@ -18,10 +20,13 @@ public class MovieServiceImpl implements MovieService {
 	@Autowired
 	MovieDAO movieDAO;
 
-	public String getMovieTSVData() {
+	public String saveMovieTSVData(String request) {
 
 		try {
-			String movieDataFile = ".\\datalib\\title.basics.tsv.gz";
+			//String movieDataFile = ".\\datalib\\title.basics.tsv.gz";
+			//String movieDataFile = "/Users/a21093/akash_n7/Spring boot/MovieBoard/datalib/title.basics.tsv.gz";
+			JSONObject obj = new JSONObject(request);
+			String movieDataFile=obj.getString("movieDataFile");
 			List<String[]> arr = new ArrayList<String[]>();
 			arr = tsvParse.readLinesFromGZ(movieDataFile);
 			List<Movie> movieList = new ArrayList<Movie>();
